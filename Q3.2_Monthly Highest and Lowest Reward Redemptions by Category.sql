@@ -27,3 +27,4 @@ END AS Carbon_Rank
 FROM Ranked_Redemptions
 WHERE Rank_Highest = 1 OR
 Rank_Lowest = 1
+ORDER BY Month, Rank_Highest;
