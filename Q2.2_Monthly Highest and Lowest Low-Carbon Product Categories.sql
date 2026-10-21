@@ -6,6 +6,7 @@ ON Products.product_id = Transaction_Items.product_id
 INNER JOIN Transactions
 ON Transactions.transaction_id = Transaction_Items.transaction_id
 WHERE Products.carbon_classification = 'Low Carbon'
+AND Transactions.transaction_status = 'Completed'
 GROUP BY MONTH(Transactions.transaction_date),
 Products.product_category
 ),
