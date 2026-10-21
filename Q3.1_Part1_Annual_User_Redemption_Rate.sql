@@ -2,7 +2,8 @@ WITH USERRedemptions AS (SELECT DISTINCT redemptions.user_id
 FROM redemptions INNER JOIN Points
 ON redemptions.user_id = Points.user_id 
 WHERE redemptions.redemption_status = 'Completed'
-AND Points.points_earned >= 1
+AND redemptions.points_redeemed > 0
+AND Points.points_earned > 0
 AND redemptions.redemption_date >= '2025-01-01'
 AND redemptions.redemption_date < '2026-01-01'
 AND Points.earned_date >= '2025-01-01'
