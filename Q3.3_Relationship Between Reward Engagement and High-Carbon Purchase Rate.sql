@@ -29,6 +29,7 @@ COUNT(redemptions.user_id) AS 'Redemption_Count'
 FROM users LEFT JOIN redemptions
 ON users.user_id = redemptions.user_id
 AND redemptions.redemption_status = 'Completed'
+AND redemptions.points_redeemed > 0
 GROUP BY users.user_id
 ),
 
