@@ -17,10 +17,11 @@ GROUP BY Month(Points.earned_date)
 ),
 
 RedemptionRate_MoMChange AS (SELECT UserRedemptions_Completed.Month,
-COUNT_UserRedemptions,
+COALESCE(COUNT_UserRedemptions, 0) AS COUNT_UserRedemptions,
 COUNT_UserPoints,
-(COUNT_UserRedemptions * 100.0) / NULLIF(COUNT_UserPoints,0) AS 'RedemptionRate_Current'
-FROM UserRedemptions_Completed INNER JOIN USERPoints_earned
+COALESCE(COUNT_UserRedemptions, 0) * 100.0
+/ NULLIF(COUNT_UserPoints, 0) AS RedemptionRate_Current
+FROM UserRedemptions_Completed LEFT JOIN USERPoints_earned
 ON UserRedemptions_Completed.Month = USERPoints_earned.Month
 )
 
